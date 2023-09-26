@@ -1,0 +1,3 @@
+.gitignore
+**/jsconfig.json
+**/logo.svg

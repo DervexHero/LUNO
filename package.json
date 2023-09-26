@@ -1,0 +1,35 @@
+{
+  "name": "luno",
+  "displayName": "LUNO",
+  "publisher": "Dervex",
+  "description": "Lua Universal Negation Operator",
+  "icon": "logo.png",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.82.0"
+  },
+  "categories": [
+    "Formatters"
+  ],
+  "keywords": [
+    "lua",
+    "luau",
+    "negate",
+    "operator",
+    "not equal",
+    "formatter",
+    "tools"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DervexHero/luno.git"
+  },
+  "activationEvents": [
+    "onLanguage:lua",
+    "onLanguage:luau"
+  ],
+  "main": "./extension.js",
+  "devDependencies": {
+    "@types/vscode": "^1.82.0"
+  }
+}
