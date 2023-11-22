@@ -1,23 +1,32 @@
-const vscode = require('vscode');
+const vscode = require('vscode')
 
-function activate() {
+module.exports.activate = () => {
 	vscode.workspace.onDidChangeTextDocument((event) => {
 		const changes = event.contentChanges[0]
 
-		if (changes && changes.text == '=' && changes.range.start.character != 0) {
-			const start = new vscode.Position(changes.range.start.line, changes.range.start.character - 1)
-			const end = new vscode.Position(changes.range.end.line, changes.range.end.character + 1)
-			const range = new vscode.Range(start, end)
+		if (!changes || event.document.languageId != 'lua') {
+			return
+		}
 
-			if (event.document.getText(range) == '!=') {
-				vscode.window.activeTextEditor.edit((builder) => {
-					builder.replace(range, '~=')
-				})
-			}
+		let start = changes.range.start
+		let end = changes.range.end
+
+		if (changes.text == '!') {
+			start = new vscode.Position(start.line, start.character)
+			end = new vscode.Position(end.line, end.character + 2)
+		} else if (changes.text == '=' && start.character != 0) {
+			start = new vscode.Position(start.line, start.character - 1)
+			end = new vscode.Position(end.line, end.character + 1)
+		} else {
+			return
+		}
+
+		const range = new vscode.Range(start, end)
+
+		if (event.document.getText(range) == '!=') {
+			vscode.window.activeTextEditor.edit((builder) => {
+				builder.replace(range, '~=')
+			})
 		}
 	})
-}
-
-module.exports = {
-	activate
 }
