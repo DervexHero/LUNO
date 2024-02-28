@@ -4,7 +4,11 @@ module.exports.activate = () => {
 	vscode.workspace.onDidChangeTextDocument((event) => {
 		const changes = event.contentChanges[0]
 
-		if (!changes || event.document.languageId != 'lua') {
+		if (
+			!changes ||
+			(event.document.languageId != 'luau' &&
+				event.document.languageId != 'lua')
+		) {
 			return
 		}
 

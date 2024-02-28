@@ -4,7 +4,7 @@
 	"publisher": "Dervex",
 	"description": "Lua Universal Negation Operator",
 	"icon": "logo.png",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"engines": {
 		"vscode": "^1.82.0"
 	},
